@@ -22,7 +22,6 @@ export const roles: Role[] = [
     role: "Product Development Intern",
     org: "Darwinbox",
     orgUrl: "https://darwinbox.com",
-    team: "Core Engineering",
     location: "Hyderabad, India",
     start: "2025-01",
     end: "2025-06",
