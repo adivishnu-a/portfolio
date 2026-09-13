@@ -1,0 +1,27 @@
+## In one paragraph
+
+Darwinbox is an enterprise HR platform. I joined the Core Engineering team as an intern in January 2025, converted to SDE-1 in July 2025, and left in August 2026. The work was the layer underneath an HR product that nobody sees when it works: who is allowed to see what, what changed and when, how locations and employees get provisioned, and how the product reads in languages other than English. Everything below is at the level of detail on my resume.
+
+## Audit trail migration
+
+The audit trail recorded changes across more than 65 entity models inside the main application. I drove its migration into a dedicated microservice in phases across three releases. The constraint was that audit coverage in production could not have a gap at any point, so each phase moved a slice of entities while the old path kept writing until the new one was verified.
+
+## Event-driven location provisioning
+
+Location provisioning ran as a scheduled CRON job, which meant a new location existed only after the next batch. I refactored it into real-time, event-driven creation, removing a bottleneck that implementation teams hit on every rollout.
+
+## Effective Date History
+
+I contributed to the design and delivery of Effective Date History, which gives the platform point-in-time snapshots of employee data: what a record looked like on a given date, not only what it looks like now.
+
+## Template Permission Roles
+
+I designed and delivered an automated Template Permission Role system for tenant-level access control, so permission configuration follows organisational hierarchies instead of being assembled by hand for each tenant.
+
+## Reliability and localisation
+
+I diagnosed and resolved defects across the bulk data import modules that ingest employee and organisational records, and implemented Multi-Language Framework support to close gaps in i18n coverage for multilingual enterprise deployments.
+
+## Internship
+
+Before converting to SDE-1, I built a simulation framework in Next.js for custom automation workflows. It let teams preview how a workflow would behave against production-equivalent configuration before deploying it live.

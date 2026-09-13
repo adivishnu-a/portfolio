@@ -1,0 +1,15 @@
+## In one paragraph
+
+MF Compass answers one question quickly: which Indian mutual funds actually beat their peers? Most fund screeners sort by raw return, which rewards whichever category the market happened to favour that year. MF Compass scores every direct-growth plan against its own category average across one, three and five years, so a Large Cap fund is only ever compared with other Large Cap funds. It tracks 312 open-ended funds across 9 core categories, refreshes daily, and needs no account. The user base is me and my brothers, which is fine. It was built to be used, not to be a demo.
+
+## How the score works
+
+Every fund gets an outperformance figure per period: the gap between its return and the category average, divided by the size of that average, so a two-point gap in a flat year counts for more than a two-point gap in a thirty-percent year. Negative returns are penalised 1.5 times. The periods are weighted 35 percent for one year, 40 percent for three years and 25 percent for five years, and the weights rebalance when a young fund lacks a period. Raw scores are then normalised within each category to a 50 to 100 scale, so the number on screen always means "relative to peers". Multi Asset Allocation has no natural benchmark, so its category average is synthesised from the funds themselves.
+
+## The pipeline
+
+A separate Node service runs on a daily GitHub Actions schedule. It discovers funds from the Kuvera API, keeps only direct growth plans in the nine categories, drops low-AUM and poorly rated schemes, pulls NAVs and category averages, computes scores and writes to Neon Postgres. The web app never calls a third-party API at request time. That is why it stays fast, and why nothing on the page can break when an upstream endpoint changes.
+
+## The app
+
+Next.js 16 on the App Router with React 19, Tailwind CSS v4 and Drizzle ORM. Fund pages are ISR-cached and revalidate every five minutes. Search runs against an in-memory index of the minimal columns with a five-minute TTL, so keystrokes never touch the database and results return in under five milliseconds. A command menu opens search from anywhere on the site. Compare holds up to three funds, and the watchlist lives in local storage. Keyboard focus order, aria-sort on sortable columns and a global reduced-motion rule were in from the first commit.

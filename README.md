@@ -1,36 +1,45 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# adiavula.vercel.app
 
-## Getting Started
+Portfolio of Adi Vishnu Avula. Next.js 16 (App Router), TypeScript, Tailwind CSS v4, Motion. Deployed on Vercel from `main`.
 
-First, run the development server:
+## Run it
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`npm run check` runs ESLint and the TypeScript compiler. `npm run build` is what Vercel runs.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Where things live
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Path                                                        | What                                                                                  |
+| ----------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| `content/site.ts`                                           | Name, tagline, status line, email, links, photo                                       |
+| `content/work.ts`                                           | Featured work (ordered) and the archive list                                          |
+| `content/work/*.mdx`, `content/research/*.mdx`              | Case-study bodies, one file per featured entry                                        |
+| `content/experience.ts`                                     | Roles and education                                                                   |
+| `content/research.ts`                                       | Publication and patent details                                                        |
+| `content/honors.ts`, `content/stack.ts`, `content/about.ts` | Honors, certifications, stack groups, About copy                                      |
+| `components/poster/`                                        | The design primitives: `Band`, `Container`, `Action`, `Meta`, `Arrow`, `SectionLabel` |
+| `components/sections/`                                      | Home page sections, in page order                                                     |
+| `components/case-study/`                                    | Shared layout for case-study pages                                                    |
+| `components/motion/`                                        | `Reveal` (in-view fade) and `SmoothScroll` (Lenis)                                    |
+| `app/`                                                      | Routes, metadata, `robots.ts`, `sitemap.ts`, `manifest.ts`, `llms.txt`, OG image      |
+| `lib/`                                                      | Formatting (`Intl`), SEO JSON-LD, MDX loader, OG font loader                          |
+| `public/resume.pdf`                                         | The resume. `/resume` redirects here                                                  |
 
-## Learn More
+## Routine edits
 
-To learn more about Next.js, take a look at the following resources:
+- **Update the resume:** replace `public/resume.pdf`, commit, push. The URL never changes.
+- **Add a project:** add an entry to `featuredWork` in `content/work.ts` and a matching `content/work/<slug>.mdx`. It appears on the home page and gets its own route, sitemap entry and OG card.
+- **Retire a project:** delete its row from `archive` (or its entry from `featuredWork` and the MDX file).
+- **Change the status line or email:** `content/site.ts`.
+- **Add education or a role:** `content/experience.ts`.
+- **Start writing:** create `content/writing/` with MDX files and add a `/writing` route. The MDX loader in `lib/mdx.ts` already handles GFM tables.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Design system
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+One family, Archivo (variable width and weight), self-hosted through `next/font`. Tokens live in `app/globals.css` under `@theme`: paper, ink, ink-2, blue, blue-deep, blue-tint, on-blue, on-blue-2, and the type scale `display`, `h1`, `h2`, `h3`, `lead`, `body`, `meta`. Bands own their colour; there are no shadows, gradients or rounded corners.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Every band wraps its content in `Reveal`. Reveals only run once JavaScript has added the `js` class to `<html>`, so the page is fully visible without scripts. Smooth scrolling and reveals are off under `prefers-reduced-motion`.

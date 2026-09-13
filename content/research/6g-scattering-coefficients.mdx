@@ -1,0 +1,22 @@
+## In one paragraph
+
+Optical signals in the near-infrared band scatter when they pass through heart muscle, and the amount of scattering is a useful biomarker for tissue health. Measuring it directly is expensive and limited to the wavelengths someone has already run an experiment for. This chapter asks whether machine learning can predict the scattering coefficient of myocardium tissue at wavelengths nobody has measured, using data generated from an analytical model, so that in-vivo wireless nanosensor networks in future 6G systems can be designed with realistic loss figures.
+
+## Approach
+
+We computed the scattering coefficient analytically for 600 to 900 nm from published refractive indices and volume fractions of sarcoplasm and myofibrils, then trained four regressors on that data: linear regression, degree-2 polynomial regression, gradient boosting (1000 estimators, learning rate 0.01, depth 5) and a small neural network (two hidden layers of 64 and 32 units, ReLU, Adam, 100 epochs). Each model was then asked to extrapolate to 900 to 1000 nm, and the predictions were compared against the analytical values for that band.
+
+## Results
+
+| Model                 | RMSE    | R²     |
+| --------------------- | ------- | ------ |
+| Linear regression     | 0.00106 | 0.982  |
+| Polynomial regression | 0.00020 | 0.9994 |
+| Gradient boosting     | 0.00122 | 0.977  |
+| Neural network        | 0.00021 | 0.9993 |
+
+Polynomial regression and the neural network tracked the analytical curve closely beyond the training range. Gradient boosting fit the training band well and extrapolated poorly, which is the expected failure mode of tree ensembles outside observed data. Scattering falls with wavelength, so within the band studied, 900 nm gives the lowest loss for a given myofibril length.
+
+## Where it was published
+
+Chapter 14 of _Edge-Enabled 6G Networking: Foundations, Technologies, and Applications_, Springer Nature, 2026. Co-authored with Raja Manjula, Abdul Jawad Khan, Chiranjeevi Thota, Venkata Kavyanjali Munipallle and Sabita Langkam at the Nano Communication and Networking Lab, SRM University AP, with support from the SRM University-AP Seed Fund. A related Indian patent application (202441090535) has been filed and published and is awaiting examination.
