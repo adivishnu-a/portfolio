@@ -2,7 +2,7 @@ import { Arrow } from "@/components/poster/Arrow";
 import { Band } from "@/components/poster/Band";
 import { Disclosure } from "@/components/motion/Disclosure";
 import { roles } from "@/content/experience";
-import { formatMonth } from "@/lib/format";
+import { formatShortMonth } from "@/lib/format";
 
 export function Experience() {
   return (
@@ -14,8 +14,8 @@ export function Experience() {
               title={role.role}
               lead={
                 <p className="tnum text-h3 md:text-h2 font-extrabold font-stretch-[112%]">
-                  <span className="block">{formatMonth(role.start)}</span>
-                  <span className="block">{formatMonth(role.end)}</span>
+                  <span className="block">{formatShortMonth(role.start)}</span>
+                  <span className="block">{formatShortMonth(role.end)}</span>
                 </p>
               }
               meta={

@@ -4,6 +4,12 @@ const monthYear = new Intl.DateTimeFormat("en", {
   timeZone: "UTC",
 });
 
+const shortMonthYear = new Intl.DateTimeFormat("en", {
+  month: "short",
+  year: "numeric",
+  timeZone: "UTC",
+});
+
 const longDate = new Intl.DateTimeFormat("en-GB", {
   day: "numeric",
   month: "long",
@@ -16,6 +22,13 @@ export function formatMonth(value: string): string {
   const [year, month] = value.split("-").map(Number);
   if (!month) return String(year);
   return monthYear.format(new Date(Date.UTC(year, month - 1, 1)));
+}
+
+/** "2025-07" to "Jul 2025". */
+export function formatShortMonth(value: string): string {
+  const [year, month] = value.split("-").map(Number);
+  if (!month) return String(year);
+  return shortMonthYear.format(new Date(Date.UTC(year, month - 1, 1)));
 }
 
 export function formatRange(start: string, end: string): string {
