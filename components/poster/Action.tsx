@@ -13,16 +13,19 @@ interface ActionProps {
   className?: string;
 }
 
+/**
+ * The one link style on the site. The solid fill rises from the bottom edge
+ * on hover and focus; the text flips colour while the fill crosses it.
+ */
 const base =
-  "label inline-flex min-h-11 items-center gap-2 border px-4 py-2 transition-colors duration-150 ease-out-expo";
+  "label relative isolate inline-flex min-h-11 items-center gap-2 overflow-hidden border px-4 py-2 transition-colors delay-75 duration-150 ease-out-expo before:absolute before:inset-0 before:-z-10 before:origin-bottom before:scale-y-0 before:transition-transform before:duration-250 before:ease-out-expo before:content-[''] hover:before:scale-y-100 focus-visible:before:scale-y-100 motion-reduce:transition-none motion-reduce:before:transition-none";
 
 const tones: Record<Tone, string> = {
   paper:
-    "border-ink text-ink hover:bg-ink hover:text-paper active:border-blue active:bg-blue",
-  blue: "border-on-blue text-on-blue hover:bg-paper hover:text-blue active:bg-blue-tint",
+    "border-ink text-ink before:bg-ink hover:text-paper focus-visible:text-paper active:border-blue active:before:bg-blue",
+  blue: "border-on-blue text-on-blue before:bg-paper hover:text-blue focus-visible:text-blue active:before:bg-blue-tint",
 };
 
-/** The one link style on the site. Route links use next/link; the rest are plain anchors. */
 export function Action({
   href,
   children,

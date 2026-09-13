@@ -129,7 +129,7 @@ export const archive: ArchiveEntry[] = [
   },
   {
     title: "ExamSystem",
-    year: 2024,
+    year: 2023,
     summary:
       "Desktop exam-taking and tracking application with an administrator leaderboard.",
     stack: ["Java", "Swing"],
@@ -137,7 +137,7 @@ export const archive: ArchiveEntry[] = [
   },
   {
     title: "Voice Assistant",
-    year: 2024,
+    year: 2022,
     summary: "Continuous voice input driving everyday tasks on a PC.",
     stack: ["Python"],
     href: "https://github.com/adivishnu-a/Voice-Assistant",

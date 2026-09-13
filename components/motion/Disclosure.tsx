@@ -49,7 +49,7 @@ export function Disclosure({ lead, title, meta, children }: DisclosureProps) {
         </div>
         <span
           aria-hidden="true"
-          className="border-ink group-hover:bg-ink group-hover:text-paper pointer-events-none absolute top-8 right-0 inline-flex size-11 items-center justify-center border transition-colors duration-150"
+          className="border-ink ease-out-expo group-hover:text-paper before:bg-ink before:ease-out-expo pointer-events-none absolute top-8 right-0 isolate inline-flex size-11 items-center justify-center overflow-hidden border transition-colors delay-75 duration-150 before:absolute before:inset-0 before:-z-10 before:origin-bottom before:scale-y-0 before:transition-transform before:duration-250 before:content-[''] group-hover:before:scale-y-100 motion-reduce:transition-none motion-reduce:before:transition-none"
         >
           <svg
             width="20"
