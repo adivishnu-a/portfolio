@@ -28,11 +28,28 @@ export const publication = {
   ],
   lab: "Nano Communication and Networking Lab, SRM University AP",
   summary:
-    "Light in the near-infrared band scatters as it passes through heart muscle, and the scattering coefficient is a biomarker for tissue health. Measuring it is expensive and limited to wavelengths someone has already run an experiment for. We generated scattering values for 600 to 900 nm from an analytical tissue model, trained linear, polynomial, gradient-boosted and neural regressors on them, and tested how well each predicted the unmeasured 900 to 1000 nm band. Polynomial regression and the neural network reached an R² above 0.999; gradient boosting fit the training data and extrapolated poorly.",
+    "Light in the near-infrared band scatters as it passes through heart muscle, and how much it scatters says something about the tissue. Measuring that directly is expensive, so we generated scattering values from an analytical tissue model and trained four regression models to predict them at wavelengths that had not been measured. A small study; the point was to test whether machine learning can stand in for the measurement.",
 };
 
 export const patent = {
   number: "202441090535",
   office: "Indian Patent Office",
   status: "Filed and published, awaiting examination",
+};
+
+export const capstone = {
+  title:
+    "Leveraging Deep Learning for Automatic Feature Extraction in Microarray Analysis",
+  note: "B.Tech capstone, unpublished",
+  year: 2025,
+  institution: "SRM University AP",
+  guide: "Prof. Naveen Kumar Mahamkali",
+  team: [
+    "Adi Vishnu Avula",
+    "Krishna Varshita Borra",
+    "Sai Deepika Daram",
+    "Kavyanjali Munipalle",
+  ],
+  summary:
+    "Classifying five cancer types from gene expression data, where there are far more genes than samples and deep learning overfits on its own. Selecting features first and then training a neural ensemble worked; applying image-style deep networks directly to the data did not.",
 };

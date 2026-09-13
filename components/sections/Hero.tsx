@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Action } from "@/components/poster/Action";
-import { cn } from "@/lib/cn";
 import { site } from "@/content/site";
 
 export function Hero() {
@@ -39,23 +38,16 @@ export function Hero() {
           </li>
         </ul>
       </div>
-      <div
-        className={cn(
-          "on-blue bg-blue relative md:col-span-5",
-          site.photo ? "min-h-[80vw] md:min-h-0" : "hidden md:block",
-        )}
-      >
-        {site.photo ? (
-          <Image
-            src={site.photo.src}
-            alt={site.photo.alt}
-            width={site.photo.width}
-            height={site.photo.height}
-            priority
-            sizes="(min-width: 768px) 42vw, 100vw"
-            className="absolute inset-x-0 bottom-0 mx-auto h-auto w-[86%] object-contain"
-          />
-        ) : null}
+      <div className="on-blue bg-blue flex items-end justify-center px-8 pt-12 md:col-span-5 md:pt-24">
+        <Image
+          src={site.photo.src}
+          alt={site.photo.alt}
+          width={site.photo.width}
+          height={site.photo.height}
+          priority
+          sizes="(min-width: 768px) 34vw, 78vw"
+          className="h-auto w-[78%] max-w-[560px]"
+        />
       </div>
     </section>
   );

@@ -1,7 +1,7 @@
 import { site } from "@/content/site";
 import { featuredWork, archive, workHref } from "@/content/work";
 import { roles, education } from "@/content/experience";
-import { publication, patent } from "@/content/research";
+import { capstone, publication, patent } from "@/content/research";
 import { formatRange } from "@/lib/format";
 
 export const dynamic = "force-static";
@@ -51,6 +51,7 @@ export function GET() {
     "",
     `- Book chapter: "${publication.title}", chapter ${publication.chapter} in "${publication.book}", ${publication.publisher}, ${publication.published}. DOI ${publication.doi}. ${publication.url}`,
     `- Patent application ${patent.number}, ${patent.office}. ${patent.status}.`,
+    `- ${capstone.note}: "${capstone.title}", ${capstone.institution}, ${capstone.year}. ${capstone.summary}`,
     "",
   ];
 

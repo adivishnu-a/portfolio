@@ -5,7 +5,6 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Footer } from "@/components/layout/Footer";
 import { SiteHeader } from "@/components/layout/SiteHeader";
-import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { site } from "@/content/site";
 import { personJsonLd, websiteJsonLd } from "@/lib/seo";
 import "./globals.css";
@@ -81,11 +80,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <a href="#main" className="skip-link">
           Skip to content
         </a>
-        <SmoothScroll>
-          <SiteHeader />
-          {children}
-          <Footer />
-        </SmoothScroll>
+        <SiteHeader />
+        {children}
+        <Footer />
         <Analytics />
         <SpeedInsights />
       </body>

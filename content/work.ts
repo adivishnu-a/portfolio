@@ -13,6 +13,23 @@ export const kindLabel: Record<WorkKind, string> = {
  */
 export const featuredWork: WorkEntry[] = [
   {
+    slug: "darwinbox",
+    kind: "professional",
+    title: "Darwinbox, Core Engineering",
+    summary:
+      "Audit trails, access control, provisioning pipelines and localisation for an enterprise HR platform, shipped over eighteen months as an intern and then SDE-1.",
+    period: "January 2025 to August 2026",
+    stack: [
+      "PHP",
+      "Node.js",
+      "Event-driven architecture",
+      "Access control",
+      "i18n",
+    ],
+    links: [{ label: "Company", href: "https://darwinbox.com" }],
+    updated: "2026-09-13",
+  },
+  {
     slug: "mf-compass",
     kind: "product",
     title: "MF Compass",
@@ -32,28 +49,7 @@ export const featuredWork: WorkEntry[] = [
     links: [
       { label: "Live", href: "https://mf-compass.vercel.app" },
       { label: "Source", href: "https://github.com/adivishnu-a/mf-compass" },
-      {
-        label: "Sync service",
-        href: "https://github.com/adivishnu-a/mf-compass-sync-service",
-      },
     ],
-    updated: "2026-09-13",
-  },
-  {
-    slug: "darwinbox",
-    kind: "professional",
-    title: "Darwinbox, Core Engineering",
-    summary:
-      "Audit trails, access control, provisioning pipelines and localisation for an enterprise HR platform, shipped over eighteen months as an intern and then SDE-1.",
-    period: "January 2025 to August 2026",
-    stack: [
-      "PHP",
-      "Node.js",
-      "Event-driven architecture",
-      "Access control",
-      "i18n",
-    ],
-    links: [{ label: "Company", href: "https://darwinbox.com" }],
     updated: "2026-09-13",
   },
   {

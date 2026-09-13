@@ -8,7 +8,7 @@ Every fund gets an outperformance figure per period: the gap between its return 
 
 ## The pipeline
 
-A separate Node service runs on a daily GitHub Actions schedule. It discovers funds from the Kuvera API, keeps only direct growth plans in the nine categories, drops low-AUM and poorly rated schemes, pulls NAVs and category averages, computes scores and writes to Neon Postgres. The web app never calls a third-party API at request time. That is why it stays fast, and why nothing on the page can break when an upstream endpoint changes.
+Sync scripts in the same repository run on GitHub Actions: an incremental sync every trading day and a full rebuild once a week, plus a manual workflow for tests and a guarded database flush. They discover funds from the Kuvera API, keep only direct growth plans in the nine categories, drop low-AUM and poorly rated schemes, pull NAVs and category averages, compute scores and write to Neon Postgres. The scoring functions are pure and unit-tested, and CI runs typecheck, lint and tests on every push. The web app never calls a third-party API at request time. That is why it stays fast, and why nothing on the page can break when an upstream endpoint changes.
 
 ## The app
 
