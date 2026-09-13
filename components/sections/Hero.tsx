@@ -1,6 +1,18 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import { Action } from "@/components/poster/Action";
 import { site } from "@/content/site";
+
+type IndexedStyle = CSSProperties & { "--i": number };
+
+const indexed = (index: number): IndexedStyle => ({ "--i": index });
+
+const actions = [
+  { label: "Resume", href: site.links.resume },
+  { label: "Email", href: `mailto:${site.email}` },
+  { label: "GitHub", href: site.links.github },
+  { label: "LinkedIn", href: site.links.linkedin },
+];
 
 export function Hero() {
   const words = site.name.split(" ");
@@ -15,39 +27,40 @@ export function Hero() {
           id="hero-heading"
           className="text-display font-extrabold font-stretch-[112%]"
         >
-          {words.map((word) => (
-            <span key={word} className="block">
+          {words.map((word, index) => (
+            <span key={word} className="hero-line block" style={indexed(index)}>
               {word}
             </span>
           ))}
         </h1>
-        <p className="text-h3 mt-8 max-w-[38ch] font-medium">{site.tagline}</p>
-        <p className="label text-ink-2 mt-4">{site.status}</p>
-        <ul className="mt-10 flex flex-wrap gap-3">
-          <li>
-            <Action href={site.links.resume}>Resume</Action>
-          </li>
-          <li>
-            <Action href={`mailto:${site.email}`}>Email</Action>
-          </li>
-          <li>
-            <Action href={site.links.github}>GitHub</Action>
-          </li>
-          <li>
-            <Action href={site.links.linkedin}>LinkedIn</Action>
-          </li>
+        <p
+          className="hero-fade text-h3 mt-8 max-w-[38ch] font-medium"
+          style={indexed(0)}
+        >
+          {site.tagline}
+        </p>
+        <p className="hero-fade label text-ink-2 mt-4" style={indexed(1)}>
+          {site.status}
+        </p>
+        <ul className="hero-fade mt-10 flex flex-wrap gap-3" style={indexed(2)}>
+          {actions.map((action) => (
+            <li key={action.href}>
+              <Action href={action.href}>{action.label}</Action>
+            </li>
+          ))}
         </ul>
       </div>
-      <div className="on-blue bg-blue flex items-end justify-center px-8 pt-12 md:col-span-5 md:pt-24">
-        <Image
-          src={site.photo.src}
-          alt={site.photo.alt}
-          width={site.photo.width}
-          height={site.photo.height}
-          priority
-          sizes="(min-width: 768px) 34vw, 78vw"
-          className="h-auto w-[78%] max-w-[560px]"
-        />
+      <div className="hero-field on-blue bg-blue flex aspect-[4/5] p-5 md:col-span-5 md:aspect-auto md:p-8">
+        <div className="relative min-h-0 flex-1">
+          <Image
+            src={site.photo.src}
+            alt={site.photo.alt}
+            fill
+            priority
+            sizes="(min-width: 768px) 42vw, 100vw"
+            className="object-cover object-[50%_30%]"
+          />
+        </div>
       </div>
     </section>
   );

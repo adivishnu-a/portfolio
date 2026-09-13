@@ -24,7 +24,7 @@ npm run dev
 | `components/poster/`                                        | The design primitives: `Band`, `Container`, `Action`, `Meta`, `Arrow`, `SectionLabel` |
 | `components/sections/`                                      | Home page sections, in page order                                                     |
 | `components/case-study/`                                    | Shared layout for case-study pages                                                    |
-| `components/motion/`                                        | `Reveal` (in-view fade)                                                               |
+| `components/motion/`                                        | `Reveal` (in-view fade) and `Disclosure` (animated expandable row)                    |
 | `app/`                                                      | Routes, metadata, `robots.ts`, `sitemap.ts`, `manifest.ts`, `llms.txt`, OG image      |
 | `lib/`                                                      | Formatting (`Intl`), SEO JSON-LD, MDX loader, OG font loader                          |
 | `public/resume.pdf`                                         | The resume. `/resume` redirects here                                                  |

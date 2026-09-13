@@ -33,6 +33,7 @@ export const roles: Role[] = [
   {
     role: "Associate",
     org: "McCarthy Lab, Next Tech Lab",
+    orgUrl: "https://www.nexttechlabap.in/",
     location: "SRM University AP",
     start: "2023-02",
     end: "2024-03",

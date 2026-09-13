@@ -2,7 +2,6 @@ import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
 import { Reveal } from "@/components/motion/Reveal";
 import { Container } from "./Container";
-import { SectionLabel } from "./SectionLabel";
 import { toneRule, toneSurface, type Tone } from "./tone";
 
 interface BandProps {
@@ -13,7 +12,11 @@ interface BandProps {
   className?: string;
 }
 
-/** One horizontal band of the poster. Bands stack; each owns its colour. */
+/**
+ * One horizontal band of the poster. Bands stack; each owns its colour.
+ * On wide screens the running label sits vertically in the page margin,
+ * so content keeps the same inset on both sides.
+ */
 export function Band({
   id,
   tone = "paper",
@@ -27,16 +30,13 @@ export function Band({
       className={cn(toneSurface[tone], "border-t", toneRule[tone], className)}
     >
       <Container>
-        <div className="grid grid-cols-4 gap-x-4 gap-y-8 py-20 md:grid-cols-12 md:gap-x-6 md:py-32">
-          {label ? <SectionLabel>{label}</SectionLabel> : null}
-          <div
-            className={cn(
-              "col-span-4",
-              label ? "md:col-span-11 md:col-start-2" : "md:col-span-12",
-            )}
-          >
-            <Reveal>{children}</Reveal>
-          </div>
+        <div className="relative py-16 md:py-24">
+          {label ? (
+            <p className="label mb-8 md:absolute md:top-24 md:-left-6 md:mb-0 md:rotate-180 md:[writing-mode:vertical-rl]">
+              {label}
+            </p>
+          ) : null}
+          <Reveal>{children}</Reveal>
         </div>
       </Container>
     </section>

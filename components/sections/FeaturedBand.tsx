@@ -16,7 +16,7 @@ interface FeaturedBandProps {
 export function FeaturedBand({ entry, tone, label, id }: FeaturedBandProps) {
   return (
     <Band id={id} tone={tone} label={label}>
-      <div className="grid gap-y-10 md:grid-cols-11 md:gap-x-6">
+      <div className="grid gap-y-10 md:grid-cols-12 md:gap-x-6">
         <div className="md:col-span-7">
           <h2 className="text-h2 md:text-h1 font-extrabold font-stretch-[112%]">
             {entry.title}
@@ -39,7 +39,7 @@ export function FeaturedBand({ entry, tone, label, id }: FeaturedBandProps) {
         </div>
         <Meta
           tone={tone}
-          className="md:col-span-3 md:col-start-9"
+          className="md:col-span-3 md:col-start-10"
           items={[
             { term: "Period", value: entry.period },
             { term: "Stack", value: entry.stack.join(", ") },

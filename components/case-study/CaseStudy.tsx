@@ -28,7 +28,7 @@ export function CaseStudy({
   return (
     <main id="main">
       <Band tone={tone} label={kindLabel[entry.kind]}>
-        <div className="grid gap-y-10 md:grid-cols-11 md:gap-x-6">
+        <div className="grid gap-y-10 md:grid-cols-12 md:gap-x-6">
           <div className="md:col-span-7">
             <h1 className="text-h2 md:text-h1 font-extrabold font-stretch-[112%]">
               {entry.title}
@@ -37,7 +37,7 @@ export function CaseStudy({
           </div>
           <Meta
             tone={tone}
-            className="md:col-span-3 md:col-start-9"
+            className="md:col-span-3 md:col-start-10"
             items={[
               { term: "Period", value: entry.period },
               { term: "Stack", value: entry.stack.join(", ") },
@@ -66,7 +66,7 @@ export function CaseStudy({
       </Band>
 
       <Container>
-        <article className="py-16 md:py-24 md:pl-[calc(100%/12+1.5rem)]">
+        <article className="py-12 md:py-16 [&>h2:first-child]:mt-0">
           {children}
         </article>
       </Container>
@@ -74,7 +74,7 @@ export function CaseStudy({
       <nav aria-label="More featured work" className="border-ink border-t">
         <Container className="flex flex-wrap justify-between gap-4 py-8">
           {previous ? (
-            <Action href={workHref(previous)}>
+            <Action href={workHref(previous)} direction="back">
               Previous: {previous.title}
             </Action>
           ) : (

@@ -122,4 +122,47 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
+
+  /* The one authored moment: the field wipes in, the name sets line by line. */
+  .hero-field {
+    animation: hero-wipe 700ms var(--ease-out-expo) both;
+  }
+
+  .hero-line {
+    animation: hero-rise 600ms var(--ease-out-expo) both;
+    animation-delay: calc(120ms + var(--i, 0) * 80ms);
+  }
+
+  .hero-fade {
+    animation: hero-rise 500ms var(--ease-out-expo) both;
+    animation-delay: calc(420ms + var(--i, 0) * 70ms);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-field,
+    .hero-line,
+    .hero-fade {
+      animation: none;
+    }
+  }
+}
+
+@keyframes hero-wipe {
+  from {
+    clip-path: inset(0 0 0 100%);
+  }
+  to {
+    clip-path: inset(0);
+  }
+}
+
+@keyframes hero-rise {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }

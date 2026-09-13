@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
 import { Archivo } from "next/font/google";
+import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Footer } from "@/components/layout/Footer";
@@ -20,7 +21,7 @@ const defaultTitle = `${site.name}, ${site.title}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: defaultTitle, template: `%s | ${site.name}` },
+  title: { default: site.name, template: `%s | ${site.name}` },
   description: site.description,
   applicationName: site.name,
   authors: [{ name: site.name, url: site.url }],
@@ -66,11 +67,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={archivo.variable} suppressHydrationWarning>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: "document.documentElement.classList.add('js')",
-          }}
-        />
+        <Script id="js-flag" strategy="beforeInteractive">
+          {"document.documentElement.classList.add('js')"}
+        </Script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: jsonLd }}

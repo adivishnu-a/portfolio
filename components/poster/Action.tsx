@@ -8,6 +8,8 @@ interface ActionProps {
   href: string;
   children: ReactNode;
   tone?: Tone;
+  /** "back" puts a left arrow before the label. */
+  direction?: "forward" | "back";
   className?: string;
 }
 
@@ -25,18 +27,29 @@ export function Action({
   href,
   children,
   tone = "paper",
+  direction = "forward",
   className,
 }: ActionProps) {
   const isRoute = href.startsWith("/") && !href.endsWith(".pdf");
   const opensNewTab = /^https?:/.test(href) || href.endsWith(".pdf");
   const classes = cn(base, tones[tone], className);
-  const arrow = <Arrow kind={opensNewTab ? "external" : "forward"} />;
+  const content =
+    direction === "back" ? (
+      <>
+        <Arrow kind="back" />
+        {children}
+      </>
+    ) : (
+      <>
+        {children}
+        <Arrow kind={opensNewTab ? "external" : "forward"} />
+      </>
+    );
 
   if (isRoute) {
     return (
       <Link href={href} className={classes}>
-        {children}
-        {arrow}
+        {content}
       </Link>
     );
   }
@@ -47,8 +60,7 @@ export function Action({
       className={classes}
       {...(opensNewTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >
-      {children}
-      {arrow}
+      {content}
     </a>
   );
 }

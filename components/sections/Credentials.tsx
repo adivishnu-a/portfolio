@@ -8,9 +8,9 @@ import { formatMonth } from "@/lib/format";
 export function Credentials() {
   return (
     <Band id="record" label="Record">
-      <div className="grid gap-y-12 md:grid-cols-11 md:gap-x-6">
+      <div className="grid gap-y-12 md:grid-cols-12 md:gap-x-6">
         {education.map((item) => (
-          <div key={item.school} className="md:col-span-11">
+          <div key={item.school} className="md:col-span-12">
             <h2 className="text-h3 md:text-h2 max-w-[30ch] font-bold">
               {item.degree}
             </h2>
@@ -42,7 +42,7 @@ export function Credentials() {
           </ul>
         </div>
 
-        <div className="md:col-span-4 md:col-start-8">
+        <div className="md:col-span-5 md:col-start-8">
           <h3 className="label">Certifications</h3>
           <ul className="mt-5 space-y-6">
             {certifications.map((cert) => (
@@ -65,18 +65,18 @@ export function Credentials() {
           </ul>
         </div>
 
-        <div className="md:col-span-11">
+        <div className="md:col-span-12">
           <h3 className="label">Stack</h3>
           <dl className="divide-ink mt-5 divide-y">
             {stack.map((group) => (
               <div
                 key={group.name}
-                className="grid grid-cols-4 gap-x-4 gap-y-3 py-5 md:grid-cols-11 md:gap-x-6"
+                className="grid grid-cols-4 gap-x-4 gap-y-3 py-5 md:grid-cols-12 md:gap-x-6"
               >
                 <dt className="text-lead col-span-4 font-bold md:col-span-3">
                   {group.name}
                 </dt>
-                <dd className="col-span-4 md:col-span-8">
+                <dd className="col-span-4 md:col-span-9">
                   <ul className="flex flex-wrap gap-2">
                     {group.items.map((item) => (
                       <li

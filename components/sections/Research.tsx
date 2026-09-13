@@ -11,7 +11,7 @@ export function Research() {
 
   return (
     <Band id="research" tone="blue" label="Research">
-      <div className="grid gap-y-10 md:grid-cols-11 md:gap-x-6">
+      <div className="grid gap-y-10 md:grid-cols-12 md:gap-x-6">
         <div className="md:col-span-7">
           <h2 className="text-h2 md:text-h1 font-extrabold font-stretch-[112%]">
             {entry.title}
@@ -32,7 +32,7 @@ export function Research() {
         </div>
         <Meta
           tone="blue"
-          className="md:col-span-3 md:col-start-9"
+          className="md:col-span-3 md:col-start-10"
           items={[
             {
               term: "Published in",
@@ -60,7 +60,7 @@ export function Research() {
         />
       </div>
 
-      <div className="border-on-blue/40 mt-16 grid gap-y-8 border-t pt-10 md:grid-cols-11 md:gap-x-6">
+      <div className="border-on-blue/40 mt-16 grid gap-y-8 border-t pt-10 md:grid-cols-12 md:gap-x-6">
         <div className="md:col-span-7">
           <p className="label text-on-blue-2">{capstone.note}</p>
           <h3 className="text-h3 mt-3 max-w-[30ch] font-bold">
@@ -70,7 +70,7 @@ export function Research() {
         </div>
         <Meta
           tone="blue"
-          className="md:col-span-3 md:col-start-9"
+          className="md:col-span-3 md:col-start-10"
           items={[
             { term: "Year", value: String(capstone.year) },
             { term: "Institution", value: capstone.institution },
