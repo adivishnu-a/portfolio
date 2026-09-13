@@ -56,7 +56,8 @@ export function Hero() {
             src={site.photo.src}
             alt={site.photo.alt}
             fill
-            priority
+            loading="eager"
+            fetchPriority="high"
             sizes="(min-width: 768px) 42vw, 100vw"
             className="object-cover object-[50%_30%]"
           />

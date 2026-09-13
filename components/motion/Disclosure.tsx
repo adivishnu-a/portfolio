@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { useId, useState } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { m, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/cn";
 
 interface DisclosureProps {
@@ -34,7 +34,7 @@ export function Disclosure({ lead, title, meta, children }: DisclosureProps) {
       <div className="relative grid grid-cols-4 gap-x-4 gap-y-4 py-8 pr-14 md:grid-cols-12 md:gap-x-6">
         <div className="col-span-4 md:col-span-3">{lead}</div>
         <div className="col-span-4 md:col-span-8">
-          <h2 className="text-h3 group-hover:text-blue font-bold transition-colors duration-150">
+          <h3 className="text-h3 group-hover:text-blue font-bold transition-colors duration-150">
             <button
               type="button"
               aria-expanded={open}
@@ -44,7 +44,7 @@ export function Disclosure({ lead, title, meta, children }: DisclosureProps) {
             >
               {title}
             </button>
-          </h2>
+          </h3>
           {meta}
         </div>
         <span
@@ -68,7 +68,7 @@ export function Disclosure({ lead, title, meta, children }: DisclosureProps) {
           </svg>
         </span>
       </div>
-      <motion.div
+      <m.div
         id={panelId}
         inert={!open}
         initial={false}
@@ -88,7 +88,7 @@ export function Disclosure({ lead, title, meta, children }: DisclosureProps) {
         style={{ overflow: "hidden" }}
       >
         {children}
-      </motion.div>
+      </m.div>
     </div>
   );
 }

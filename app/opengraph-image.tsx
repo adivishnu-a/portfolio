@@ -1,17 +1,13 @@
 import { ImageResponse } from "next/og";
 import { site } from "@/content/site";
-import { loadGoogleFont, ogColors } from "@/lib/og";
+import { ogColors } from "@/lib/og";
+import { posterFonts } from "@/lib/og-fonts";
 
 export const alt = `${site.name}, ${site.title}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function OpenGraphImage() {
-  const [bold, medium] = await Promise.all([
-    loadGoogleFont("Archivo", 800),
-    loadGoogleFont("Archivo", 500),
-  ]);
-
   return new ImageResponse(
     <div
       style={{
@@ -63,12 +59,6 @@ export default async function OpenGraphImage() {
         </div>
       </div>
     </div>,
-    {
-      ...size,
-      fonts: [
-        { name: "Archivo", data: bold, weight: 800, style: "normal" },
-        { name: "Archivo", data: medium, weight: 500, style: "normal" },
-      ],
-    },
+    { ...size, fonts: await posterFonts() },
   );
 }

@@ -18,9 +18,9 @@ export function FeaturedBand({ entry, tone, label, id }: FeaturedBandProps) {
     <Band id={id} tone={tone} label={label}>
       <div className="grid gap-y-10 md:grid-cols-12 md:gap-x-6">
         <div className="md:col-span-7">
-          <h2 className="text-h2 md:text-h1 font-extrabold font-stretch-[112%]">
+          <h3 className="text-h2 md:text-h1 font-extrabold font-stretch-[112%]">
             {entry.title}
-          </h2>
+          </h3>
           <p className="text-lead mt-6 max-w-[44ch]">{entry.summary}</p>
           <ul className="mt-8 flex flex-wrap gap-3">
             <li>

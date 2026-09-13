@@ -1,7 +1,7 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { motion, useReducedMotion } from "motion/react";
+import { m, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/cn";
 
 /** Fades and lifts a block the first time it enters the viewport. */
@@ -17,7 +17,7 @@ export function Reveal({
   const reduceMotion = useReducedMotion();
 
   return (
-    <motion.div
+    <m.div
       className={cn("reveal", className)}
       initial={reduceMotion ? false : { opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -25,6 +25,6 @@ export function Reveal({
       transition={{ duration: 0.4, delay, ease: [0.16, 1, 0.3, 1] }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

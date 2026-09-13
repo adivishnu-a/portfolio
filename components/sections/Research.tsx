@@ -13,9 +13,9 @@ export function Research() {
     <Band id="research" tone="blue" label="Research">
       <div className="grid gap-y-10 md:grid-cols-12 md:gap-x-6">
         <div className="md:col-span-7">
-          <h2 className="text-h2 md:text-h1 font-extrabold font-stretch-[112%]">
+          <h3 className="text-h2 md:text-h1 font-extrabold font-stretch-[112%]">
             {entry.title}
-          </h2>
+          </h3>
           <p className="text-lead mt-6 max-w-[44ch]">{publication.summary}</p>
           <ul className="mt-8 flex flex-wrap gap-3">
             <li>
@@ -63,9 +63,9 @@ export function Research() {
       <div className="border-on-blue/40 mt-16 grid gap-y-8 border-t pt-10 md:grid-cols-12 md:gap-x-6">
         <div className="md:col-span-7">
           <p className="label text-on-blue-2">{capstone.note}</p>
-          <h3 className="text-h3 mt-3 max-w-[30ch] font-bold">
+          <h4 className="text-h3 mt-3 max-w-[30ch] font-bold">
             {capstone.title}
-          </h3>
+          </h4>
           <p className="mt-4 max-w-[60ch]">{capstone.summary}</p>
         </div>
         <Meta

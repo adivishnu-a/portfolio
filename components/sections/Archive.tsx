@@ -5,9 +5,9 @@ import { archive } from "@/content/work";
 export function Archive() {
   return (
     <Band id="archive" label="More work">
-      <h2 className="text-h2 font-extrabold font-stretch-[112%]">
+      <h3 className="text-h2 font-extrabold font-stretch-[112%]">
         Everything else
-      </h2>
+      </h3>
       <ul className="divide-ink mt-10 divide-y">
         {archive.map((item) => (
           <li
@@ -17,7 +17,7 @@ export function Archive() {
             <p className="tnum text-meta text-ink-2 col-span-1 md:pt-1.5">
               {item.year}
             </p>
-            <h3 className="text-h3 col-span-3 font-semibold">
+            <h4 className="text-h3 col-span-3 font-semibold">
               <a
                 href={item.href}
                 target="_blank"
@@ -27,7 +27,7 @@ export function Archive() {
                 {item.title}
                 <Arrow kind="external" className="ml-2 inline-block" />
               </a>
-            </h3>
+            </h4>
             <p className="col-span-4 md:col-span-5 md:pt-1">{item.summary}</p>
             <p className="text-meta text-ink-2 col-span-4 md:col-span-3 md:pt-1.5">
               {item.stack.join(", ")}

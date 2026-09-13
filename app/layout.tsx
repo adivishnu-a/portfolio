@@ -6,12 +6,14 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Footer } from "@/components/layout/Footer";
 import { SiteHeader } from "@/components/layout/SiteHeader";
+import { MotionProvider } from "@/components/motion/MotionProvider";
 import { site } from "@/content/site";
 import { personJsonLd, websiteJsonLd } from "@/lib/seo";
 import "./globals.css";
 
 const archivo = Archivo({
   subsets: ["latin"],
+  style: "normal",
   axes: ["wdth"],
   variable: "--font-archivo",
   display: "swap",
@@ -79,9 +81,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <a href="#main" className="skip-link">
           Skip to content
         </a>
-        <SiteHeader />
-        {children}
-        <Footer />
+        <MotionProvider>
+          <SiteHeader />
+          {children}
+          <Footer />
+        </MotionProvider>
         <Analytics />
         <SpeedInsights />
       </body>

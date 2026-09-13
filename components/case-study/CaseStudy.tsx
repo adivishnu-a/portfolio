@@ -29,7 +29,7 @@ export function CaseStudy({
 
   return (
     <main id="main">
-      <Band tone={tone} label={kindLabel[entry.kind]}>
+      <Band tone={tone} label={kindLabel[entry.kind]} labelAs="p">
         <Link
           href="/#work"
           className="label mb-6 inline-flex min-h-11 items-center gap-2 underline-offset-4 hover:underline"
