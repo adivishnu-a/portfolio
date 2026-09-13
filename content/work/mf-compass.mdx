@@ -1,6 +1,6 @@
 ## In one paragraph
 
-MF Compass answers one question quickly: which Indian mutual funds actually beat their peers? Most fund screeners sort by raw return, which rewards whichever category the market happened to favour that year. MF Compass scores every direct-growth plan against its own category average across one, three and five years, so a Large Cap fund is only ever compared with other Large Cap funds. It tracks 312 open-ended funds across 9 core categories, refreshes daily, and needs no account. The user base is me and my brothers, which is fine. It was built to be used, not to be a demo.
+MF Compass answers one question quickly: which Indian mutual funds beat their peers? Most fund screeners sort by raw return, which rewards whichever category the market happened to favour that year. MF Compass scores every direct-growth plan against its own category average across one, three and five years, so a Large Cap fund is only ever compared with other Large Cap funds. It tracks 312 open-ended funds across 9 core categories, refreshes daily, and needs no account. The user base is me and my brothers, which is fine. I built it because I wanted to use it.
 
 ## How the score works
 
@@ -8,7 +8,7 @@ Every fund gets an outperformance figure per period: the gap between its return 
 
 ## The pipeline
 
-Sync scripts in the same repository run on GitHub Actions: an incremental sync every trading day and a full rebuild once a week, plus a manual workflow for tests and a guarded database flush. They discover funds from the Kuvera API, keep only direct growth plans in the nine categories, drop low-AUM and poorly rated schemes, pull NAVs and category averages, compute scores and write to Neon Postgres. The scoring functions are pure and unit-tested, and CI runs typecheck, lint and tests on every push. The web app never calls a third-party API at request time. That is why it stays fast, and why nothing on the page can break when an upstream endpoint changes.
+Sync scripts in the same repository run on GitHub Actions: an incremental sync every trading day and a full rebuild once a week, plus a manual workflow for tests and a guarded database flush. They discover funds from the Kuvera API, keep only direct growth plans in the nine categories, drop low-AUM and poorly rated schemes, pull NAVs and category averages, compute scores and write to Neon Postgres. The scoring functions are pure and unit-tested, and CI runs typecheck, lint and tests on every push. The web app never calls an outside API at request time, which is why it stays fast and why nothing on the page breaks when an upstream endpoint changes.
 
 ## The app
 
@@ -16,14 +16,14 @@ Next.js 16 on the App Router with React 19, Tailwind CSS v4 and Drizzle ORM. Fun
 
 ## What was hard
 
-Data, not code. Indian mutual fund data is scattered across fund houses, registrar feeds and a handful of aggregators, so I went through the options first: open-source libraries, public datasets, scraping the primary sources. Some were incomplete, some lagged by days, some changed shape without notice. Kuvera's API turned out to be the cleanest and most complete source for daily NAVs, multi-period returns, category averages and fund metadata, so the pipeline is built around it, with every response validated against a schema so a silent change upstream fails the sync job loudly instead of quietly corrupting scores.
+The data. Indian mutual fund figures live in several places and none of them is complete on its own, so I spent the first stretch trying sources: a couple of open source libraries, the public datasets, scraping the primary sites. Some were missing categories or lagged the market by days, and one changed its response format while I was using it. Kuvera's API had daily NAVs, multi-period returns, category averages and fund metadata in one place, so the pipeline is built around it. Every response is checked against a schema. If the shape changes upstream, the sync job fails and tells me, instead of writing bad scores quietly.
 
-The scoring rules came from watching results. A fund with one extraordinary year would float to the top of its category on raw returns, so the score leans on three-year performance and rebalances the weights rather than rewarding a single period. Long market downturns pull every fund negative at once, good ones included, so the comparison is always against the category average for the same period and never against zero, and the denominator is floored so a near-zero category average cannot blow the ratio up.
+The scoring rules came from watching results. A fund with one extraordinary year would float to the top of its category on raw returns, so the score leans on three-year performance and rebalances the weights when a period is missing. Long market downturns pull every fund negative at once, good ones included, so each fund is compared with its category average for the same period rather than with zero, and the denominator has a floor so a near-zero category average cannot blow the ratio up.
 
 ## Why negative returns cost 1.5 times
 
-A fund that lost money in absolute terms is penalised 1.5 times its relative gap. That is a deliberate opinion. A manager who takes calculated risk and protects capital in a bad year is worth more to a retail investor than one who swings hard in both directions, even if the averages look similar. The score says so.
+A fund that lost money in absolute terms is penalised 1.5 times its relative gap. That is an opinion, and I hold it: a manager who takes calculated risk and protects capital in a bad year is worth more to a retail investor than one who swings hard both ways, even when the averages come out similar.
 
 ## What I would do differently
 
-Pull from more than one source and go a level deeper: holdings and sector breakdowns per fund, so outperformance can be explained and not only measured, and simple simulations, a SIP over a chosen window against its category, so the number on screen is something you can act on.
+Use more than one source, and go a level deeper: holdings and sector breakdowns per fund, so outperformance can be explained as well as measured, and simple simulations such as a SIP over a chosen window against its category, so the number on screen is something you can act on.

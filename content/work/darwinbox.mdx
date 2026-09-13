@@ -6,17 +6,17 @@ Darwinbox is an enterprise HR platform. I joined the Core Engineering team as an
 
 The audit trail recorded changes across more than 65 entity models inside the main application. I drove its migration into a dedicated microservice in phases across three releases.
 
-What made it hard was the shape of the data, not the volume. Every entity model has its own field types and its own web of linked collections, and an audit record is only useful if the lookups that make it readable, who changed what, on which record, under which tenant, resolve exactly as they did before. So the work began with an inventory: every model, every relation, every field that needed special handling, mapped before the service was written.
+What made it hard was the shape of the data rather than the volume. Each entity model has its own field types and its own web of linked collections, and an audit record is only useful if the lookups that make it readable (who changed which record, under which tenant) resolve exactly as they did before. So the work started with an inventory of every model and relation, and of each field that needed special handling, mapped out before the service was written.
 
 The constraint was that production audit coverage could not have a gap at any point. Entities moved in slices. For each slice the new service was verified against the existing trail before it became the source of truth, with the old path still writing until the comparison held, so a problem meant a rollback rather than a missing record. Three releases later the main application no longer owned auditing at all.
 
 ## Event-driven location provisioning
 
-Location provisioning ran as a scheduled CRON job, which meant a new location existed only after the next batch. I refactored it into real-time, event-driven creation, removing a bottleneck that implementation teams hit on every rollout.
+Location provisioning ran as a scheduled CRON job, so a new location only existed after the next batch. I refactored it into event-driven creation, and a bottleneck that implementation teams hit on every rollout went away.
 
 ## Effective Date History
 
-I contributed to the design and delivery of Effective Date History, which gives the platform point-in-time snapshots of employee data: what a record looked like on a given date, not only what it looks like now.
+I contributed to the design and delivery of Effective Date History, which gives the platform point-in-time snapshots of employee data: what a record looked like on a given date, as well as what it looks like now.
 
 ## Template Permission Roles
 

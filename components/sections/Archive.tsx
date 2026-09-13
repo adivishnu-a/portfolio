@@ -12,9 +12,11 @@ export function Archive() {
         {archive.map((item) => (
           <li
             key={item.title}
-            className="grid grid-cols-4 gap-x-4 gap-y-2 py-5 md:grid-cols-12 md:gap-x-6"
+            className="grid grid-cols-4 gap-x-4 gap-y-3 py-6 md:grid-cols-12 md:gap-x-6"
           >
-            <p className="tnum text-meta text-ink-2 col-span-1">{item.year}</p>
+            <p className="tnum text-meta text-ink-2 col-span-1 md:pt-1.5">
+              {item.year}
+            </p>
             <h3 className="text-h3 col-span-3 font-semibold">
               <a
                 href={item.href}
@@ -26,8 +28,8 @@ export function Archive() {
                 <Arrow kind="external" className="ml-2 inline-block" />
               </a>
             </h3>
-            <p className="col-span-4 md:col-span-5">{item.summary}</p>
-            <p className="text-meta text-ink-2 col-span-4 md:col-span-3">
+            <p className="col-span-4 md:col-span-5 md:pt-1">{item.summary}</p>
+            <p className="text-meta text-ink-2 col-span-4 md:col-span-3 md:pt-1.5">
               {item.stack.join(", ")}
             </p>
           </li>

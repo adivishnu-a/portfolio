@@ -51,5 +51,5 @@ export const capstone = {
     "Kavyanjali Munipalle",
   ],
   summary:
-    "Classifying five cancer types from gene expression data, where there are far more genes than samples and deep learning overfits on its own. Selecting features first and then training a neural ensemble worked; applying image-style deep networks directly to the data did not.",
+    "Classifying five cancer types from gene expression data, where there are far more genes than samples and deep learning overfits on its own. Selecting features first and then training a neural ensemble worked well. The same data fed straight into image-style deep networks barely beat guessing.",
 };
