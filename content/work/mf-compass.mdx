@@ -13,3 +13,17 @@ Sync scripts in the same repository run on GitHub Actions: an incremental sync e
 ## The app
 
 Next.js 16 on the App Router with React 19, Tailwind CSS v4 and Drizzle ORM. Fund pages are ISR-cached and revalidate every five minutes. Search runs against an in-memory index of the minimal columns with a five-minute TTL, so keystrokes never touch the database and results return in under five milliseconds. A command menu opens search from anywhere on the site. Compare holds up to three funds, and the watchlist lives in local storage. Keyboard focus order, aria-sort on sortable columns and a global reduced-motion rule were in from the first commit.
+
+## What was hard
+
+Data, not code. Indian mutual fund data is scattered across fund houses, registrar feeds and a handful of aggregators, so I went through the options first: open-source libraries, public datasets, scraping the primary sources. Some were incomplete, some lagged by days, some changed shape without notice. Kuvera's API turned out to be the cleanest and most complete source for daily NAVs, multi-period returns, category averages and fund metadata, so the pipeline is built around it, with every response validated against a schema so a silent change upstream fails the sync job loudly instead of quietly corrupting scores.
+
+The scoring rules came from watching results. A fund with one extraordinary year would float to the top of its category on raw returns, so the score leans on three-year performance and rebalances the weights rather than rewarding a single period. Long market downturns pull every fund negative at once, good ones included, so the comparison is always against the category average for the same period and never against zero, and the denominator is floored so a near-zero category average cannot blow the ratio up.
+
+## Why negative returns cost 1.5 times
+
+A fund that lost money in absolute terms is penalised 1.5 times its relative gap. That is a deliberate opinion. A manager who takes calculated risk and protects capital in a bad year is worth more to a retail investor than one who swings hard in both directions, even if the averages look similar. The score says so.
+
+## What I would do differently
+
+Pull from more than one source and go a level deeper: holdings and sector breakdowns per fund, so outperformance can be explained and not only measured, and simple simulations, a SIP over a chosen window against its category, so the number on screen is something you can act on.

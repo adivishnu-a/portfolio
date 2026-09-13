@@ -66,13 +66,13 @@ export function CaseStudy({
       </Band>
 
       <Container>
-        <article className="py-12 md:py-16 [&>h2:first-child]:mt-0">
+        <article className="inset-col py-16 md:py-24 [&>h2:first-child]:mt-0">
           {children}
         </article>
       </Container>
 
       <nav aria-label="More featured work" className="border-ink border-t">
-        <Container className="flex flex-wrap justify-between gap-4 py-8">
+        <Container className="inset-col flex flex-wrap justify-between gap-4 py-8">
           {previous ? (
             <Action href={workHref(previous)} direction="back">
               Previous: {previous.title}

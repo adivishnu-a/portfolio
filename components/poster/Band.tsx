@@ -14,8 +14,8 @@ interface BandProps {
 
 /**
  * One horizontal band of the poster. Bands stack; each owns its colour.
- * On wide screens the running label sits vertically in the page margin,
- * so content keeps the same inset on both sides.
+ * On wide screens the running label takes the first of twelve columns and
+ * the last column stays empty, so content sits centred with equal insets.
  */
 export function Band({
   id,
@@ -30,13 +30,13 @@ export function Band({
       className={cn(toneSurface[tone], "border-t", toneRule[tone], className)}
     >
       <Container>
-        <div className="relative py-16 md:py-24">
-          {label ? (
-            <p className="label mb-8 md:absolute md:top-24 md:-left-6 md:mb-0 md:rotate-180 md:[writing-mode:vertical-rl]">
-              {label}
-            </p>
-          ) : null}
-          <Reveal>{children}</Reveal>
+        <div className="grid grid-cols-4 gap-x-4 gap-y-8 py-20 md:grid-cols-12 md:gap-x-6 md:py-32">
+          <p className="label col-span-4 md:col-span-1 md:rotate-180 md:self-start md:justify-self-start md:[writing-mode:vertical-rl]">
+            {label}
+          </p>
+          <div className="col-span-4 md:col-span-10">
+            <Reveal>{children}</Reveal>
+          </div>
         </div>
       </Container>
     </section>

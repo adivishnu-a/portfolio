@@ -2,6 +2,7 @@
 
 import type { ReactNode } from "react";
 import { useId, useState } from "react";
+import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/cn";
 
 interface DisclosureProps {
@@ -11,18 +12,21 @@ interface DisclosureProps {
   title: string;
   /** Lines under the title in the collapsed row. */
   meta?: ReactNode;
-  /** Expanded content. */
+  /** Expanded content. Always in the DOM; hidden and inert while collapsed. */
   children: ReactNode;
 }
+
+const ease = [0.16, 1, 0.3, 1] as const;
 
 /**
  * An expandable row. The whole row is clickable through a stretched button
  * inside the heading, so the title keeps its heading semantics and the button
- * announces the row's name. Height animates with a grid-template-rows
- * transition, so nothing is measured.
+ * announces the row's name. The panel height is animated by Motion, which
+ * measures once and tweens pixel values on its own frame loop.
  */
 export function Disclosure({ lead, title, meta, children }: DisclosureProps) {
   const [open, setOpen] = useState(false);
+  const reduceMotion = useReducedMotion();
   const panelId = useId();
 
   return (
@@ -56,7 +60,7 @@ export function Disclosure({ lead, title, meta, children }: DisclosureProps) {
             strokeWidth="1.5"
             strokeLinecap="square"
             className={cn(
-              "ease-out-expo transition-transform duration-200",
+              "ease-out-expo transition-transform duration-300",
               open && "rotate-180",
             )}
           >
@@ -64,23 +68,27 @@ export function Disclosure({ lead, title, meta, children }: DisclosureProps) {
           </svg>
         </span>
       </div>
-      <div
+      <motion.div
         id={panelId}
         inert={!open}
-        className="ease-out-expo grid transition-[grid-template-rows] duration-300"
-        style={{ gridTemplateRows: open ? "1fr" : "0fr" }}
+        initial={false}
+        animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
+        transition={
+          reduceMotion
+            ? { duration: 0 }
+            : {
+                height: { duration: 0.45, ease },
+                opacity: {
+                  duration: 0.3,
+                  ease: "easeOut",
+                  delay: open ? 0.08 : 0,
+                },
+              }
+        }
+        style={{ overflow: "hidden" }}
       >
-        <div className="overflow-hidden">
-          <div
-            className={cn(
-              "ease-out-expo transition-opacity duration-200",
-              open ? "opacity-100 delay-100" : "opacity-0",
-            )}
-          >
-            {children}
-          </div>
-        </div>
-      </div>
+        {children}
+      </motion.div>
     </div>
   );
 }

@@ -10,6 +10,19 @@ export default function manifest(): MetadataRoute.Manifest {
     display: "browser",
     background_color: "#ffffff",
     theme_color: "#1d2be0",
-    icons: [{ src: "/memoji.png", sizes: "512x512", type: "image/png" }],
+    icons: [
+      {
+        src: "/app-icon.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "any",
+      },
+      {
+        src: "/app-icon.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "maskable",
+      },
+    ],
   };
 }

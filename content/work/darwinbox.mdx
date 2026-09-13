@@ -4,7 +4,11 @@ Darwinbox is an enterprise HR platform. I joined the Core Engineering team as an
 
 ## Audit trail migration
 
-The audit trail recorded changes across more than 65 entity models inside the main application. I drove its migration into a dedicated microservice in phases across three releases. The constraint was that audit coverage in production could not have a gap at any point, so each phase moved a slice of entities while the old path kept writing until the new one was verified.
+The audit trail recorded changes across more than 65 entity models inside the main application. I drove its migration into a dedicated microservice in phases across three releases.
+
+What made it hard was the shape of the data, not the volume. Every entity model has its own field types and its own web of linked collections, and an audit record is only useful if the lookups that make it readable, who changed what, on which record, under which tenant, resolve exactly as they did before. So the work began with an inventory: every model, every relation, every field that needed special handling, mapped before the service was written.
+
+The constraint was that production audit coverage could not have a gap at any point. Entities moved in slices. For each slice the new service was verified against the existing trail before it became the source of truth, with the old path still writing until the comparison held, so a problem meant a rollback rather than a missing record. Three releases later the main application no longer owned auditing at all.
 
 ## Event-driven location provisioning
 
