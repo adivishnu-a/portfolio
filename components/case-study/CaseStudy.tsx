@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
 import { Action } from "@/components/poster/Action";
+import { Arrow } from "@/components/poster/Arrow";
 import { Band } from "@/components/poster/Band";
 import { Container } from "@/components/poster/Container";
 import { Meta } from "@/components/poster/Meta";
@@ -28,6 +30,13 @@ export function CaseStudy({
   return (
     <main id="main">
       <Band tone={tone} label={kindLabel[entry.kind]}>
+        <Link
+          href="/#work"
+          className="label mb-6 inline-flex min-h-11 items-center gap-2 underline-offset-4 hover:underline"
+        >
+          <Arrow kind="back" />
+          All work
+        </Link>
         <div className="grid gap-y-10 md:grid-cols-12 md:gap-x-6">
           <div className="md:col-span-7">
             <h1 className="text-h2 md:text-h1 font-extrabold font-stretch-[112%]">
@@ -72,7 +81,7 @@ export function CaseStudy({
       </Container>
 
       <nav aria-label="More featured work" className="border-ink border-t">
-        <Container className="inset-col flex flex-wrap justify-between gap-4 py-8">
+        <Container className="inset-col flex flex-wrap items-center justify-between gap-4 py-8">
           {previous ? (
             <Action href={workHref(previous)} direction="back">
               Previous: {previous.title}
@@ -80,9 +89,14 @@ export function CaseStudy({
           ) : (
             <span />
           )}
+          <Action href="/#work" direction="back">
+            All work
+          </Action>
           {next ? (
             <Action href={workHref(next)}>Next: {next.title}</Action>
-          ) : null}
+          ) : (
+            <span />
+          )}
         </Container>
       </nav>
     </main>
