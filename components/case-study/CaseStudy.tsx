@@ -43,6 +43,15 @@ export function CaseStudy({
               {entry.title}
             </h1>
             <p className="text-lead mt-6 max-w-[44ch]">{entry.summary}</p>
+            <ul className="mt-8 flex flex-wrap gap-3">
+              {entry.links.map((link) => (
+                <li key={link.href}>
+                  <Action href={link.href} tone={tone}>
+                    {link.label}
+                  </Action>
+                </li>
+              ))}
+            </ul>
           </div>
           <Meta
             tone={tone}
@@ -50,25 +59,6 @@ export function CaseStudy({
             items={[
               { term: "Period", value: entry.period },
               { term: "Stack", value: entry.stack.join(", ") },
-              {
-                term: "Links",
-                value: (
-                  <ul className="flex flex-wrap gap-x-4 gap-y-1">
-                    {entry.links.map((link) => (
-                      <li key={link.href}>
-                        <a
-                          href={link.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="underline hover:opacity-80"
-                        >
-                          {link.label}
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                ),
-              },
             ]}
           />
         </div>
