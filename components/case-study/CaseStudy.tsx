@@ -89,9 +89,6 @@ export function CaseStudy({
           ) : (
             <span />
           )}
-          <Action href="/#work" direction="back">
-            All work
-          </Action>
           {next ? (
             <Action href={workHref(next)}>Next: {next.title}</Action>
           ) : (

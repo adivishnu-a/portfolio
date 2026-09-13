@@ -1,8 +1,8 @@
 import type { StackGroup } from "./types";
 
 /**
- * Only things Adi has shipped with and would answer questions on.
- * Spring Boot is deliberately absent.
+ * A signal, not an inventory: what matters for a backend engineer moving
+ * into machine learning. Spring Boot is deliberately absent.
  */
 export const stack: StackGroup[] = [
   {
@@ -14,23 +14,23 @@ export const stack: StackGroup[] = [
     items: [
       "Node.js",
       "Express",
+      "FastAPI",
       "REST API design",
       "Event-driven architecture",
       "ACID transactions and concurrency control",
-      "Zod",
     ],
   },
   { name: "Frontend", items: ["React", "Next.js", "Tailwind CSS"] },
   {
     name: "Data",
-    items: ["PostgreSQL", "Drizzle ORM", "Prisma", "Redis", "MongoDB", "MySQL"],
+    items: ["PostgreSQL", "Drizzle ORM", "Redis", "MongoDB", "MySQL"],
   },
   {
     name: "Machine learning",
-    items: ["scikit-learn", "Keras", "pandas", "NumPy"],
+    items: ["PyTorch", "scikit-learn", "pandas", "NumPy"],
   },
   {
-    name: "Infrastructure and tooling",
-    items: ["GitHub Actions", "Docker", "Vitest", "Vercel", "AWS"],
+    name: "Infrastructure",
+    items: ["GitHub Actions", "Vercel", "AWS"],
   },
 ];
