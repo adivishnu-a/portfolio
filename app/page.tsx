@@ -6,7 +6,7 @@ import { Experience } from "@/components/sections/Experience";
 import { FeaturedBand } from "@/components/sections/FeaturedBand";
 import { Hero } from "@/components/sections/Hero";
 import { Research } from "@/components/sections/Research";
-import { getWork } from "@/content/work";
+import { featuredWork, getWork } from "@/content/work";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/" },
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   const darwinbox = getWork("darwinbox", "professional");
-  const mfCompass = getWork("mf-compass", "product");
+  const products = featuredWork.filter((entry) => entry.kind === "product");
 
   return (
     <main id="main">
@@ -28,9 +28,14 @@ export default function HomePage() {
         />
       ) : null}
       <Experience />
-      {mfCompass ? (
-        <FeaturedBand entry={mfCompass} tone="blue" label="Work" />
-      ) : null}
+      {products.map((entry, index) => (
+        <FeaturedBand
+          key={entry.slug}
+          entry={entry}
+          tone={index % 2 === 0 ? "blue" : "paper"}
+          label={index === 0 ? "Work" : "Product"}
+        />
+      ))}
       <Archive />
       <Research />
       <About />

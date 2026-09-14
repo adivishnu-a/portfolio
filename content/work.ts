@@ -13,6 +13,29 @@ export const kindLabel: Record<WorkKind, string> = {
  */
 export const featuredWork: WorkEntry[] = [
   {
+    slug: "halflife",
+    kind: "product",
+    title: "Halflife",
+    summary:
+      "A free flashcard app with two schedulers: Anki's SM-2 formula and a half-life regression model trained on 12.85 million Duolingo reviews. Every review records what both would do, and the model takes over only when it wins on real data.",
+    period: "2026",
+    stack: [
+      "PyTorch",
+      "FastAPI",
+      "NumPy",
+      "Next.js 16",
+      "TypeScript",
+      "Neon Postgres",
+      "Drizzle ORM",
+      "GitHub Actions",
+    ],
+    links: [
+      { label: "Live", href: "https://halflifecards.vercel.app" },
+      { label: "Source", href: "https://github.com/adivishnu-a/halflife" },
+    ],
+    updated: "2026-09-14",
+  },
+  {
     slug: "darwinbox",
     kind: "professional",
     title: "Darwinbox, Core Engineering",
@@ -95,14 +118,6 @@ export function getWork(slug: string, kind?: WorkKind): WorkEntry | undefined {
 
 /** Everything else, newest first. Delete a row to retire it. */
 export const archive: ArchiveEntry[] = [
-  {
-    title: "NexusPay",
-    year: 2026,
-    summary:
-      "UPI-inspired payment service provider with a sandbox bank. Row-level locking, idempotent transfers, sender identity taken only from the JWT.",
-    stack: ["Java", "PostgreSQL", "Next.js"],
-    href: "https://github.com/adivishnu-a/nexuspay",
-  },
   {
     title: "CampusFusion",
     year: 2025,
