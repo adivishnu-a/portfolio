@@ -1,23 +1,36 @@
-import { loadGoogleFont } from "./og";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 
-/** The two Archivo instances every share card uses, loaded once per build. */
+const fontDir = path.join(process.cwd(), "assets", "fonts");
+
+/**
+ * The two Archivo instances every share card uses, read from the repository
+ * so builds never depend on the network. Static WOFF files from Google Fonts.
+ */
 export async function posterFonts() {
   const [bold, medium] = await Promise.all([
-    loadGoogleFont("Archivo", 800),
-    loadGoogleFont("Archivo", 500),
+    readFile(path.join(fontDir, "archivo-800.woff")),
+    readFile(path.join(fontDir, "archivo-500.woff")),
   ]);
   return [
     {
       name: "Archivo",
-      data: bold,
+      data: toArrayBuffer(bold),
       weight: 800 as const,
       style: "normal" as const,
     },
     {
       name: "Archivo",
-      data: medium,
+      data: toArrayBuffer(medium),
       weight: 500 as const,
       style: "normal" as const,
     },
   ];
+}
+
+function toArrayBuffer(buffer: Buffer): ArrayBuffer {
+  return buffer.buffer.slice(
+    buffer.byteOffset,
+    buffer.byteOffset + buffer.byteLength,
+  ) as ArrayBuffer;
 }
