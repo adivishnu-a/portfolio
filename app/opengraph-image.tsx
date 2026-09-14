@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 import { site } from "@/content/site";
-import { ogColors } from "@/lib/og";
+import { ogColors } from "@/lib/og-colors";
 import { posterFonts } from "@/lib/og-fonts";
 
 export const alt = `${site.name}, ${site.title}`;

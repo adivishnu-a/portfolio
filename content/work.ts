@@ -142,19 +142,4 @@ export const archive: ArchiveEntry[] = [
     stack: ["Apache Spark", "R"],
     href: "https://github.com/adivishnu-a/Twitter-Sentiment-Analysis",
   },
-  {
-    title: "ExamSystem",
-    year: 2023,
-    summary:
-      "Desktop exam-taking and tracking application with an administrator leaderboard.",
-    stack: ["Java", "Swing"],
-    href: "https://github.com/adivishnu-a/ExamSystem",
-  },
-  {
-    title: "Voice Assistant",
-    year: 2022,
-    summary: "Continuous voice input driving everyday tasks on a PC.",
-    stack: ["Python"],
-    href: "https://github.com/adivishnu-a/Voice-Assistant",
-  },
 ];

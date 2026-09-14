@@ -4,7 +4,7 @@ import { archive } from "@/content/work";
 
 export function Archive() {
   return (
-    <Band id="archive" label="More work">
+    <Band id="archive" label="More projects">
       <h3 className="text-h2 font-extrabold font-stretch-[112%]">
         Everything else
       </h3>

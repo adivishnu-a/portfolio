@@ -1,5 +1,5 @@
 import { site } from "@/content/site";
-import { ogColors } from "@/lib/og";
+import { ogColors } from "@/lib/og-colors";
 
 interface PosterCardProps {
   label: string;
