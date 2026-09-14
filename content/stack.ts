@@ -7,24 +7,21 @@ import type { StackGroup } from "./types";
 export const stack: StackGroup[] = [
   {
     name: "Languages",
-    items: ["TypeScript", "JavaScript", "Python", "Java", "PHP", "SQL"],
+    items: ["TypeScript", "JavaScript", "Python", "Java", "PHP"],
   },
   {
     name: "Backend",
     items: [
       "Node.js",
-      "Express",
       "FastAPI",
+      "PostgreSQL",
+      "MongoDB",
       "REST API design",
       "Event-driven architecture",
       "ACID transactions and concurrency control",
     ],
   },
   { name: "Frontend", items: ["React", "Next.js", "Tailwind CSS"] },
-  {
-    name: "Data",
-    items: ["PostgreSQL", "Drizzle ORM", "Redis", "MongoDB", "MySQL"],
-  },
   {
     name: "Machine learning",
     items: ["PyTorch", "scikit-learn", "pandas", "NumPy"],
