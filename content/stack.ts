@@ -18,7 +18,6 @@ export const stack: StackGroup[] = [
       "MongoDB",
       "REST API design",
       "Event-driven architecture",
-      "ACID transactions and concurrency control",
     ],
   },
   { name: "Frontend", items: ["React", "Next.js", "Tailwind CSS"] },
