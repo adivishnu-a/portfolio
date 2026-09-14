@@ -32,7 +32,7 @@ npm run dev
 ## Routine edits
 
 - **Update the resume:** replace `public/resume.pdf`, commit, push. The URL never changes.
-- **Add a project:** add an entry to `featuredWork` in `content/work.ts` and a matching `content/work/<slug>.mdx`. It appears on the home page and gets its own route, sitemap entry and OG card.
+- **Add a project:** add an entry to `featuredWork` in `content/work.ts` and a matching `content/work/<slug>.mdx`. It appears in the Projects band on the home page and gets its own route, sitemap entry and OG card.
 - **Retire a project:** delete its row from `archive` (or its entry from `featuredWork` and the MDX file).
 - **Change the status line, email or portrait:** `content/site.ts` (drop a new `public/photo.jpg` for the portrait).
 - **Add education or a role:** `content/experience.ts`.

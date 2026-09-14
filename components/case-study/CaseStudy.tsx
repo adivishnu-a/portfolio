@@ -9,6 +9,13 @@ import type { Tone } from "@/components/poster/tone";
 import { featuredWork, kindLabel, workHref } from "@/content/work";
 import type { WorkEntry } from "@/content/types";
 
+/** Where the link above the title returns to, per kind of entry. */
+const backLink: Record<WorkEntry["kind"], { href: string; label: string }> = {
+  professional: { href: "/#work", label: "All work" },
+  product: { href: "/#projects", label: "All projects" },
+  research: { href: "/#research", label: "Research" },
+};
+
 const toneByKind: Record<WorkEntry["kind"], Tone> = {
   product: "blue",
   professional: "paper",
@@ -31,11 +38,11 @@ export function CaseStudy({
     <main id="main">
       <Band tone={tone} label={kindLabel[entry.kind]} labelAs="p">
         <Link
-          href="/#work"
+          href={backLink[entry.kind].href}
           className="label mb-6 inline-flex min-h-11 items-center gap-2 underline-offset-4 hover:underline"
         >
           <Arrow kind="back" />
-          All work
+          {backLink[entry.kind].label}
         </Link>
         <div className="grid gap-y-10 md:grid-cols-12 md:gap-x-6">
           <div className="md:col-span-7">
